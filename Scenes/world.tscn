@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkvonu0k3w5ig"]
+
+[ext_resource type="PackedScene" uid="uid://de2nukgylwc1j" path="res://Scenes/nekoshi.tscn" id="1_cssn2"]
+[ext_resource type="PackedScene" uid="uid://cm51owypc7bs1" path="res://Scenes/obstacle.tscn" id="2_fvjm2"]
+
+[node name="World" type="Node"]
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.098)
+
+[node name="Nekoshi" parent="." instance=ExtResource("1_cssn2")]
+transform = Transform3D(1.00394, 0, 0, 0, 1.00394, 0, 0, 0, 1.00394, 0, 0, 0)
+Speed = 10.0
+
+[node name="Obstacle" parent="." instance=ExtResource("2_fvjm2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.17302)

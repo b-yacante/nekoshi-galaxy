@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm51owypc7bs1"]
+
+[ext_resource type="Texture2D" uid="uid://dokr66hxqtm7l" path="res://Obstacle.png" id="1_b34uw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjqtu"]
+height = 1.26226
+
+[node name="Obstacle" type="RigidBody3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.142784, 0, 0, 0, 0.142784, 0, 0, 0, 0.142784, 0, 0, 0)
+texture = ExtResource("1_b34uw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_yjqtu")

@@ -15,4 +15,8 @@ transform = Transform3D(1.00394, 0, 0, 0, 1.00394, 0, 0, 0, 1.00394, 0, 0, 0)
 Speed = 10.0
 
 [node name="Obstacle" parent="." instance=ExtResource("2_fvjm2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.17302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.0261)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+gravity_scale = 1.66533e-16
+obstacleSpeed = 0.5

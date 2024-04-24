@@ -1,15 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm51owypc7bs1"]
+[gd_scene load_steps=5 format=3 uid="uid://cm51owypc7bs1"]
 
+[ext_resource type="Script" path="res://Scripts/Obstacle.cs" id="1_7pkvk"]
 [ext_resource type="Texture2D" uid="uid://dokr66hxqtm7l" path="res://Obstacle.png" id="1_b34uw"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yjqtu"]
-height = 1.26226
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7i6fd"]
+radius = 0.343531
+height = 0.687063
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y8mdu"]
+radius = 0.315697
+height = 0.631394
 
 [node name="Obstacle" type="RigidBody3D"]
+script = ExtResource("1_7pkvk")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.142784, 0, 0, 0, 0.142784, 0, 0, 0, 0.142784, 0, 0, 0)
+transform = Transform3D(0.108154, 0, 0, 0, 0.108154, 0, 0, 0, 0.108154, 0, 0, 0)
 texture = ExtResource("1_b34uw")
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_7i6fd")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_yjqtu")
+shape = SubResource("CapsuleShape3D_y8mdu")
+disabled = true

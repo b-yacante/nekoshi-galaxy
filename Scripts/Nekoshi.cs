@@ -15,7 +15,7 @@ public partial class Nekoshi : CharacterBody3D
 	[Export]
 	public float Speed { get; set; } = 2f;
 	private Vector2I _LanePos = new Vector2I(0, 0); // -1: left/down -- 0: middle -- 1: right/up
-	private int _lanePosition = 0; // -1: left -- 0: middle -- 1: right
+	// private int _lanePosition = 0; // -1: left -- 0: middle -- 1: right
 	private const float _laneDistance = 0.65f;
 	private Vector3 _targetVelocity;
 
@@ -28,7 +28,7 @@ public partial class Nekoshi : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector3 _targetPosition = new(_lanePosition * _laneDistance, GlobalPosition.Y, GlobalPosition.Z);
+		Vector3 _targetPosition = new(_LanePos.X * _laneDistance, _LanePos.Y * _laneDistance, GlobalPosition.Z);
 
 		Vector3 newPosition = GlobalTransform.Origin.Lerp(_targetPosition, (float)delta * Speed);
 		GlobalTransform = new Transform3D(GlobalTransform.Basis, newPosition);
@@ -60,28 +60,33 @@ public partial class Nekoshi : CharacterBody3D
 			if (swipe.X > 0) MoveRight();
 			else MoveLeft();
 		}
+		else if (Mathf.Abs(swipe.Y) > length)
+		{
+			if (swipe.Y < 0) MoveUp();
+			else MoveDown();
+		}
 	}
 
 	private void MoveUp()
 	{
-		_LanePos.Y++
-		if (_LanePos == 2) _LanePos = 1
+		_LanePos.Y++;
+		if (_LanePos.Y == 2) _LanePos.Y = 1;
 	}
 	private void MoveDown()
 	{
-		_LanePos.Y--
-		if (_LanePos == -2) _LanePos = -1
+		_LanePos.Y--;
+		if (_LanePos.Y == -2) _LanePos.Y = -1;
 	}
 
 	private void MoveLeft()
 	{
-		_lanePosition--;
-		if (_lanePosition == -2) _lanePosition = -1;
+		_LanePos.X--;
+		if (_LanePos.X == -2) _LanePos.X = -1;
 	}
 
 	private void MoveRight()
 	{
-		_lanePosition++;
-		if (_lanePosition == 2) _lanePosition = 1;
+		_LanePos.X++;
+		if (_LanePos.X == 2) _LanePos.X = 1;
 	}
 }

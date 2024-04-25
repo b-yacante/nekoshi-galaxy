@@ -12,18 +12,16 @@ public partial class Obstacle : RigidBody3D
 	{
 		_obstacle = GetNode<Obstacle>("Obstacle");
 		var randomNumber = new RandomNumberGenerator();
-		int randomLane = randomNumber.RandiRange(-1, 1);
+		int randomLaneX = randomNumber.RandiRange(-1, 1);
+		int randomLaneY = randomNumber.RandiRange(-1, 1);
 
-		GD.Print(randomLane);
-
-		Vector3 randomPosition = new(randomLane * _laneDistance, GlobalPosition.Y, GlobalPosition.Z);
+		Vector3 randomPosition = new(randomLaneX * _laneDistance, randomLaneY * _laneDistance, GlobalPosition.Z);
 		GlobalTransform = new Transform3D(GlobalTransform.Basis, randomPosition);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		// Vector3 _targetPosition = new(_lanePosition * _laneDistance, GlobalPosition.Y, GlobalPosition.Z);
-		ApplyCentralForce(new Vector3(0, 0, 1f * obstacleSpeed));
+		ApplyCentralForce(new Vector3(0, 0, obstacleSpeed));
 	}
 }

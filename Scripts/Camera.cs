@@ -5,36 +5,96 @@ public partial class Camera : Camera3D
 {
 	[Export] Node3D _Player = null;
 	[Export] private float smoothCamera = 2f;
+	[Export] private float DegreeRotation = 5f;
+	[Export] private float MovePosition = 0.2f;
 
-	float elapsed = 0.0f;
+	float elapsed = 3.0f;
+	Vector2 degRot = Vector2.Zero;
+	Vector2 pos = Vector2.Zero;
 
-	// private Transform3D _cameraTransform = Transform3D.Identity;
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
+		var _player = GetNode<Nekoshi>("Nekoshi");
+		_player.LanePosition += OnLanePosition;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Transform3D transform = Transform;
-		// Vector3 _targetPosition = new(_Player.Position.X, _Player.Position.Y, GlobalPosition.Z);
-		// Vector3 newPosition = GlobalTransform.Origin.Lerp(_targetPosition, (float)delta * smoothCamera);
-		// GlobalTransform = new Transform3D(GlobalTransform.Basis, newPosition);
+		Vector3 newPosition = GlobalTransform.Origin.Lerp(new Vector3(pos.X, pos.Y, GlobalPosition.Z), (float)delta * smoothCamera);
+		GlobalTransform = new Transform3D(GlobalTransform.Basis, newPosition);
+
+		Vector3 newRotation = Rotation.Lerp(new Vector3(Mathf.DegToRad(degRot.X), Mathf.DegToRad(degRot.Y), 0), (float)delta * elapsed);
+		Rotation = newRotation;
+
+	}
+	public void OnLanePosition(Vector2I lanePos)
+	{
+
+		// posicion y rotacion en Y
+		if (lanePos.Y < 0)
+		{
+			degRot.X = DegreeRotation;
+			pos.Y = MovePosition;
+			pos.X = 0f;
+			degRot.Y = 0f;
+		}
+		else if (lanePos.Y > 0)
+		{
+			pos.Y = MovePosition * -1;
+			degRot.X = DegreeRotation * -1;
+			pos.X = 0f;
+			degRot.Y = 0f;
+		}
+		// si la posicion en Y es 0
+		else
+		{
+			pos.Y = 0f;
+			degRot.Y = 0f;
+			// movemos la camara en X
+			if (lanePos.X > 0)
+			{
+				pos.X = MovePosition;
+				degRot.Y = DegreeRotation;
+				pos.Y = 0f;
+				degRot.X = 0f;
+			}
+			else if (lanePos.X < 0)
+			{
+				pos.X = MovePosition * -1;
+				degRot.Y = DegreeRotation * -1;
+				pos.Y = 0f;
+				degRot.X = 0f;
+			}
+			else
+			{
+				pos.X = 0f;
+				degRot.X = 0f;
+			}
+		}
 
 
-		// transform.Basis = new Basis(new Vector3(0, 1f, 0), 1f) * transform.Basis;
-		// transform.Basis = transform.Basis.Rotated(Vector3.Up, 0.1f);
-		float _rotationY = Mathf.LerpAngle(Mathf.DegToRad(0f), Mathf.DegToRad(45f), elapsed);
-
-		transform.Basis = new Basis();
-
-		// Transform = transform;
-		Rotation = new Vector3(Rotation.X, _rotationY, Rotation.Z);
-
-		// RotateObjectLocal(new Vector3(0, 1f, 0), 0.1f);
-		elapsed += (float)delta;
+		// // left and right
+		// if (lanePos.X > 0)
+		// {
+		// 	pos.X = MovePosition;
+		// 	degRot.Y = DegreeRotation;
+		// }
+		// else if (lanePos.X < 0)
+		// {
+		// 	pos.X = MovePosition * -1;
+		// 	degRot.Y = DegreeRotation * -1;
+		// }
+		// // center
+		// if (lanePos.Y == 0)
+		// {
+		// 	pos.Y = 0f;
+		// 	degRot.Y = 0f;
+		// }
+		// if (lanePos.X == 0)
+		// {
+		// 	pos.X = 0f;
+		// 	degRot.X = 0f;
+		// }
 	}
 
 	public void RotateCamera()
@@ -43,3 +103,4 @@ public partial class Camera : Camera3D
 
 	}
 }
+

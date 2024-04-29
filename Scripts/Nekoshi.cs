@@ -3,6 +3,9 @@ using System;
 
 public partial class Nekoshi : CharacterBody3D
 {
+	[Signal]
+	public delegate void LanePositionEventHandler(Vector2I lanePos);
+
 	/*
 	SWIPE 
 	*/
@@ -46,6 +49,7 @@ public partial class Nekoshi : CharacterBody3D
 			else
 			{
 				CalculateSwipe(eventMouseButton.Position);
+				EmitSignal(SignalName.LanePosition, _LanePos);
 			}
 		}
 

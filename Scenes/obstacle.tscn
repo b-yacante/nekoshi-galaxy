@@ -12,6 +12,7 @@ radius = 0.315697
 height = 0.631394
 
 [node name="Obstacle" type="RigidBody3D"]
+gravity_scale = 0.0
 script = ExtResource("1_7pkvk")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

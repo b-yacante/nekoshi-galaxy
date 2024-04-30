@@ -71,30 +71,6 @@ public partial class Camera : Camera3D
 				degRot.X = 0f;
 			}
 		}
-
-
-		// // left and right
-		// if (lanePos.X > 0)
-		// {
-		// 	pos.X = MovePosition;
-		// 	degRot.Y = DegreeRotation;
-		// }
-		// else if (lanePos.X < 0)
-		// {
-		// 	pos.X = MovePosition * -1;
-		// 	degRot.Y = DegreeRotation * -1;
-		// }
-		// // center
-		// if (lanePos.Y == 0)
-		// {
-		// 	pos.Y = 0f;
-		// 	degRot.Y = 0f;
-		// }
-		// if (lanePos.X == 0)
-		// {
-		// 	pos.X = 0f;
-		// 	degRot.X = 0f;
-		// }
 	}
 
 	public void RotateCamera()

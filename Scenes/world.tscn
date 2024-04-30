@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkvonu0k3w5ig"]
+[gd_scene load_steps=5 format=3 uid="uid://bkvonu0k3w5ig"]
 
 [ext_resource type="PackedScene" uid="uid://de2nukgylwc1j" path="res://Scenes/nekoshi.tscn" id="1_cssn2"]
 [ext_resource type="Script" path="res://Scripts/Camera.cs" id="1_j7xns"]
-[ext_resource type="PackedScene" uid="uid://cm51owypc7bs1" path="res://Scenes/obstacle.tscn" id="2_fvjm2"]
 [ext_resource type="Texture2D" uid="uid://di1j5wiearl8i" path="res://New Project.png" id="4_8jp20"]
-[ext_resource type="PackedScene" uid="uid://c1u7kivn43h66" path="res://Scenes/spawner.tscn" id="5_hng16"]
+[ext_resource type="PackedScene" uid="uid://c4u3whyvcrtpj" path="res://Scenes/spawner.tscn" id="5_hng16"]
 
 [node name="World" type="Node"]
 
@@ -20,12 +19,6 @@ _Player = NodePath("../../Nekoshi")
 transform = Transform3D(1.00394, 0, 0, 0, 1.00394, 0, 0, 0, 1.00394, 0, 0, 0)
 axis_lock_linear_z = true
 Speed = 10.0
-
-[node name="Obstacle" parent="." instance=ExtResource("2_fvjm2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.0261)
-axis_lock_linear_x = true
-axis_lock_linear_y = true
-obstacleSpeed = 5.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1.24889, 0, 0, 0, 1.24889, 0, 0, 0, 2.70052, 0, 0, -13.7457)

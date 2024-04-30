@@ -11,12 +11,12 @@ public partial class Obstacle : RigidBody3D
 	public override void _Ready()
 	{
 		// _obstacle = GetNode<Obstacle>("Obstacle");
-		var randomNumber = new RandomNumberGenerator();
-		int randomLaneX = randomNumber.RandiRange(-1, 1);
-		int randomLaneY = randomNumber.RandiRange(-1, 1);
+		// var randomNumber = new RandomNumberGenerator();
+		// int randomLaneX = randomNumber.RandiRange(-1, 1);
+		// int randomLaneY = randomNumber.RandiRange(-1, 1);
 
-		Vector3 randomPosition = new(randomLaneX * _laneDistance, randomLaneY * _laneDistance, GlobalPosition.Z);
-		GlobalTransform = new Transform3D(GlobalTransform.Basis, randomPosition);
+		// Vector3 randomPosition = new(randomLaneX * _laneDistance, randomLaneY * _laneDistance, GlobalPosition.Z);
+		// GlobalTransform = new Transform3D(GlobalTransform.Basis, randomPosition);
 		// GlobalTransform.Origin = new Vector3(randomLaneX * _laneDistance, randomLaneY * _laneDistance, GlobalPosition.Z);
 		// GlobalTranslate(new Vector3(randomLaneX * _laneDistance, randomLaneY * _laneDistance, GlobalPosition.Z));
 	}

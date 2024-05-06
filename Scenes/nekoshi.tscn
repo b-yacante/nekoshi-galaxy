@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://de2nukgylwc1j"]
+[gd_scene load_steps=5 format=3 uid="uid://de2nukgylwc1j"]
 
 [ext_resource type="Script" path="res://Scripts/Nekoshi.cs" id="1_21fcr"]
 [ext_resource type="Texture2D" uid="uid://dnqd0psyt7axk" path="res://Char.png" id="2_e2u7q"]
@@ -6,6 +6,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4b6jg"]
 radius = 0.144087
 height = 0.538387
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8xb4p"]
+radius = 0.158987
+height = 0.537727
 
 [node name="Nekoshi" type="CharacterBody3D"]
 motion_mode = 1
@@ -17,3 +21,10 @@ texture = ExtResource("2_e2u7q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_4b6jg")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_8xb4p")
+
+[connection signal="area_entered" from="Area3D" to="." method="_OnAreaEntered"]

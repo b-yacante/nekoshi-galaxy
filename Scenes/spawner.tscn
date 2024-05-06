@@ -4,6 +4,7 @@
 
 [node name="Spawner" type="Node3D"]
 script = ExtResource("1_egv6g")
+obs1Path = PackedStringArray("res://Scenes/obstacle.tscn", "res://Scenes/obstacle_2.tscn")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

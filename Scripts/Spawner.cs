@@ -3,7 +3,7 @@ using System;
 
 public partial class Spawner : Node3D
 {
-	private readonly string obs1Path = "res://Scenes/obstacle.tscn";
+	[Export] private string[] obs1Path;
 	private const float _laneDistance = 0.65f;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -19,7 +19,7 @@ public partial class Spawner : Node3D
 	{
 		for (int i = 0; i < amount; i++)
 		{
-			var sceneToInstance = GD.Load<PackedScene>(obs1Path).Instantiate();
+			var sceneToInstance = GD.Load<PackedScene>(obs1Path[i]).Instantiate();
 
 			if (sceneToInstance != null)
 			{
@@ -35,14 +35,14 @@ public partial class Spawner : Node3D
 
 					Vector3 randomPosition = new(randomLaneX * _laneDistance, randomLaneY * _laneDistance, nodeInstance.GlobalPosition.Z);
 					nodeInstance.GlobalPosition = randomPosition;
-				}else {
+				}
+				else
+				{
 					GD.Print("Object null");
 				}
 
 
 			}
-			// var _obstacle = GD.Load<PackedScene>("res://Scenes/obstacle.tscn").Instantiate();
-			// AddChild(_obstacle);
 		}
 
 	}
@@ -50,7 +50,7 @@ public partial class Spawner : Node3D
 	private void OnTimerTimeout()
 	{
 		var randomNumber = new RandomNumberGenerator();
-		int amount = randomNumber.RandiRange(1, 3);
-		IntantiateObstacles(1);
+		int amount = randomNumber.RandiRange(1, 2);
+		IntantiateObstacles(amount);
 	}
 }

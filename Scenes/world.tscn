@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkvonu0k3w5ig"]
+[gd_scene load_steps=6 format=3 uid="uid://bkvonu0k3w5ig"]
 
+[ext_resource type="Script" path="res://Scripts/world.cs" id="1_7wct8"]
 [ext_resource type="PackedScene" uid="uid://de2nukgylwc1j" path="res://Scenes/nekoshi.tscn" id="1_cssn2"]
 [ext_resource type="Script" path="res://Scripts/Camera.cs" id="1_j7xns"]
 [ext_resource type="Texture2D" uid="uid://di1j5wiearl8i" path="res://New Project.png" id="4_8jp20"]
 [ext_resource type="PackedScene" uid="uid://c4u3whyvcrtpj" path="res://Scenes/spawner.tscn" id="5_hng16"]
 
 [node name="World" type="Node"]
+script = ExtResource("1_7wct8")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 

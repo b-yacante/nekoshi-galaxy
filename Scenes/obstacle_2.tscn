@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxaa6cu0yge7t"]
+[gd_scene load_steps=5 format=3 uid="uid://bxaa6cu0yge7t"]
 
 [ext_resource type="Script" path="res://Scripts/Obstacle.cs" id="1_2qed4"]
 [ext_resource type="Texture2D" uid="uid://bu04ertjj2mun" path="res://icon.svg" id="2_dw0q3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_q2tlq"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_jgoi3"]
+
 [node name="Obstacle2" type="RigidBody3D"]
+gravity_scale = 1.66533e-16
 script = ExtResource("1_2qed4")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -13,3 +16,9 @@ texture = ExtResource("2_dw0q3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_q2tlq")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_jgoi3")

@@ -25,5 +25,9 @@ public partial class Obstacle : RigidBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		ApplyCentralForce(new Vector3(0, 0, obstacleSpeed));
-	}
+	} 
 }
+
+
+
+

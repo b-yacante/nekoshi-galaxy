@@ -6,6 +6,8 @@ public partial class Nekoshi : CharacterBody3D
 	[Signal]
 	public delegate void LanePositionEventHandler(Vector2I lanePos);
 
+	[Export] private int life = 3;
+
 	/*
 	SWIPE 
 	*/
@@ -18,7 +20,6 @@ public partial class Nekoshi : CharacterBody3D
 	[Export]
 	public float Speed { get; set; } = 2f;
 	private Vector2I _LanePos = new Vector2I(0, 0); // -1: left/down -- 0: middle -- 1: right/up
-	// private int _lanePosition = 0; // -1: left -- 0: middle -- 1: right
 	private const float _laneDistance = 0.65f;
 	private Vector3 _targetVelocity;
 
@@ -52,7 +53,6 @@ public partial class Nekoshi : CharacterBody3D
 				EmitSignal(SignalName.LanePosition, _LanePos);
 			}
 		}
-
 	}
 
 	public void CalculateSwipe(Vector2 swipeEnd)
@@ -93,4 +93,25 @@ public partial class Nekoshi : CharacterBody3D
 		_LanePos.X++;
 		if (_LanePos.X == 2) _LanePos.X = 1;
 	}
+
+	private void TakeDamage(int damage)
+	{
+		life = life - damage;
+		if (life == 0)
+		{
+			QueueFree();
+		}
+	}
+	private void _OnAreaEntered(Area3D area)
+	{
+		TakeDamage(1);
+		GD.Print(life);
+		// if (area.GetParent().Name == "Obstacle")
+		// {
+		// }
+	}
 }
+
+
+
+

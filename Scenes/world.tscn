@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkvonu0k3w5ig"]
+[gd_scene load_steps=7 format=3 uid="uid://bkvonu0k3w5ig"]
 
-[ext_resource type="Script" path="res://Scripts/world.cs" id="1_7wct8"]
+[ext_resource type="Script" path="res://Scripts/World.cs" id="1_6eymu"]
 [ext_resource type="PackedScene" uid="uid://de2nukgylwc1j" path="res://Scenes/nekoshi.tscn" id="1_cssn2"]
 [ext_resource type="Script" path="res://Scripts/Camera.cs" id="1_j7xns"]
 [ext_resource type="Texture2D" uid="uid://di1j5wiearl8i" path="res://New Project.png" id="4_8jp20"]
 [ext_resource type="PackedScene" uid="uid://c4u3whyvcrtpj" path="res://Scenes/spawner.tscn" id="5_hng16"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikgae"]
+size = Vector3(2.70761, 4.36725, 0.197998)
+
 [node name="World" type="Node"]
-script = ExtResource("1_7wct8")
+script = ExtResource("1_6eymu")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 
@@ -28,5 +31,14 @@ texture = ExtResource("4_8jp20")
 
 [node name="Spawner" parent="." instance=ExtResource("5_hng16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.2624)
+obs1Path = PackedStringArray("res://Scenes/obstacle.tscn")
 
+[node name="CameraWall" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.955326)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -0.1)
+shape = SubResource("BoxShape3D_ikgae")
+
+[connection signal="WorldVelocity" from="." to="Spawner" method="OnWorldVelocity"]
 [connection signal="LanePosition" from="Nekoshi" to="CameraPivot/Camera3D" method="OnLanePosition"]

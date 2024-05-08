@@ -21,7 +21,9 @@ texture = ExtResource("1_b34uw")
 shape = SubResource("CapsuleShape3D_y8mdu")
 disabled = true
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="AreaObstacle" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaObstacle"]
 shape = SubResource("SphereShape3D_sdsco")
+
+[connection signal="area_entered" from="AreaObstacle" to="." method="OnAreaEntered"]

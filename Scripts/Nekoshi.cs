@@ -104,11 +104,11 @@ public partial class Nekoshi : CharacterBody3D
 	}
 	private void _OnAreaEntered(Area3D area)
 	{
-		TakeDamage(1);
-		GD.Print(life);
-		// if (area.GetParent().Name == "Obstacle")
-		// {
-		// }
+		if (area.Name == "AreaObstacle")
+		{
+			TakeDamage(1);
+			GD.Print(life);
+		}
 	}
 }
 

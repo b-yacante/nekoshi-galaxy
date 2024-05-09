@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Spawner : Node3D
 {
@@ -19,10 +20,13 @@ public partial class Spawner : Node3D
 
 	private void IntantiateObstacles(int amount)
 	{
+		Vector2I[] auxArr = new Vector2I[amount];
+		List<Vector2I> arr = new List<Vector2I>();
+
 		for (int i = 0; i < amount; i++)
 		{
 			// intanciamos la escena
-			var sceneToInstance = GD.Load<PackedScene>(obs1Path[i]).Instantiate();
+			var sceneToInstance = GD.Load<PackedScene>(obs1Path[0]).Instantiate();
 			// comprobamos si la escena trae algo
 			if (sceneToInstance != null)
 			{
@@ -34,8 +38,22 @@ public partial class Spawner : Node3D
 				if (nodeInstance != null)
 				{
 					var randomNumber = new RandomNumberGenerator();
-					int randomLaneX = randomNumber.RandiRange(-1, 1);
-					int randomLaneY = randomNumber.RandiRange(-1, 1);
+					int randomLaneX = 0;
+					int randomLaneY = 0;
+
+					while (true)
+					{
+						randomLaneX = randomNumber.RandiRange(-1, 1);
+						randomLaneY = randomNumber.RandiRange(-1, 1);
+
+						Vector2I randomVal = new Vector2I(randomLaneX, randomLaneY);
+
+						if (!arr.Exists((el) => el == randomVal))
+						{
+							arr.Add(randomVal);
+							break;
+						}
+					}
 
 					Vector3 randomPosition = new(randomLaneX * _laneDistance, randomLaneY * _laneDistance, nodeInstance.GlobalPosition.Z);
 					nodeInstance.GlobalPosition = randomPosition;

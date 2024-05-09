@@ -27,7 +27,7 @@ public partial class World : Node
 		{
 			multVel++;
 			AddVelocity();
-			progressTime += progressTime;
+			progressTime += gameTime;
 			GD.Print(gameTime);
 		}
 	}

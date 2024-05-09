@@ -45,5 +45,8 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/decals/filter=1
+textures/light_projectors/filter=1
 environment/defaults/default_clear_color=Color(0.197899, 0.233747, 0.548627, 1)

@@ -89,3 +89,4 @@ height = 34.1607
 
 [connection signal="WorldVelocity" from="." to="Spawner" method="OnWorldVelocity"]
 [connection signal="LanePosition" from="Nekoshi" to="Nekoshi/CameraPivot/Camera3D" method="OnLanePosition"]
+[connection signal="UpdateLife" from="Nekoshi" to="Control" method="OnUpdateLife"]

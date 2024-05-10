@@ -5,6 +5,8 @@ public partial class Nekoshi : CharacterBody3D
 {
 	[Signal]
 	public delegate void LanePositionEventHandler(Vector2I lanePos);
+	[Signal]
+	public delegate void UpdateLifeEventHandler(int life);
 
 	[Export] private int life = 3;
 
@@ -97,8 +99,10 @@ public partial class Nekoshi : CharacterBody3D
 	private void TakeDamage(int damage)
 	{
 		life = life - damage;
+		EmitSignal(SignalName.UpdateLife, life);
 		if (life == 0)
 		{
+
 			QueueFree();
 		}
 	}
@@ -107,7 +111,6 @@ public partial class Nekoshi : CharacterBody3D
 		if (area.Name == "AreaObstacle")
 		{
 			TakeDamage(1);
-			GD.Print(life);
 		}
 	}
 }
